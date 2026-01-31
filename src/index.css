@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 96.5%;
+    --foreground: 0 0% 11.4%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 11.4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 11.4%;
+    --primary: 211 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 0 0% 11.4%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 0 0% 52.5%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 0 0% 11.4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 211 100% 45%;
+    --radius: 0.625rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-apple-gray-50 text-apple-gray-500 font-sans;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Apple-style button */
+  .btn-apple {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-body font-medium transition-all duration-300 ease-apple;
+    @apply bg-apple-blue text-white hover:bg-opacity-90 hover:shadow-apple-lg;
+  }
+  
+  .btn-apple-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-body font-medium transition-all duration-300 ease-apple;
+    @apply bg-transparent text-apple-blue border border-apple-blue hover:bg-apple-blue hover:text-white;
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl;
+  }
+  
+  .glass-dark {
+    @apply bg-apple-gray-500/80 backdrop-blur-xl text-white;
+  }
+  
+  /* Section styling */
+  .section-apple {
+    @apply w-full px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+  
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-apple-blue to-apple-purple;
+  }
+  
+  /* Product card hover effect */
+  .product-card {
+    @apply transition-all duration-500 ease-apple;
+  }
+  
+  .product-card:hover {
+    @apply -translate-y-2 shadow-apple-lg;
+  }
+  
+  /* Link hover effect */
+  .link-apple {
+    @apply relative text-apple-gray-300 transition-colors duration-300;
+  }
+  
+  .link-apple:hover {
+    @apply text-apple-gray-500;
+  }
+  
+  .link-apple::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-300 ease-apple;
+  }
+  
+  .link-apple:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Custom selection color */
+  ::selection {
+    @apply bg-apple-blue/20 text-apple-gray-500;
+  }
+  
+  /* Smooth will-change for animated elements */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-opacity {
+    will-change: opacity;
+  }
+  
+  /* Perspective for 3D transforms */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  /* Apple-style page transitions */
+  .page-transition {
+    @apply animate-fade-in;
+  }
+  
+  /* Staggered animation delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  
+  /* Premium hover effects */
+  .hover-lift {
+    @apply transition-all duration-500 ease-apple;
+  }
+  
+  .hover-lift:hover {
+    @apply -translate-y-2 shadow-apple-lg;
+  }
+  
+  /* Magnetic effect on hover */
+  .magnetic {
+    @apply transition-transform duration-300 ease-apple;
+  }
+  
+  /* Glow effect for CTAs */
+  .glow {
+    @apply relative;
+  }
+  
+  .glow::after {
+    content: '';
+    @apply absolute inset-0 rounded-full opacity-0 transition-opacity duration-500;
+    background: radial-gradient(circle, rgba(0, 113, 227, 0.4) 0%, transparent 70%);
+  }
+  
+  .glow:hover::after {
+    @apply opacity-100;
+  }
+  
+  /* Smooth image loading */
+  .img-loading {
+    @apply bg-apple-gray-100 animate-pulse;
+  }
+  
+  /* Text reveal animation */
+  .text-reveal {
+    @apply overflow-hidden;
+  }
+  
+  .text-reveal > * {
+    @apply transform translate-y-full transition-transform duration-700 ease-apple;
+  }
+  
+  .text-reveal.revealed > * {
+    @apply translate-y-0;
+  }
+  
+  /* Parallax container */
+  .parallax-container {
+    @apply overflow-hidden;
+  }
+  
+  .parallax-element {
+    @apply will-change-transform;
+  }
+}
