@@ -86,10 +86,21 @@ export default function Footer() {
 
         {/* Divider */}
         <div className="border-t border-apple-gray-200 pt-8">
+          
+
           {/* CTA */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
             <p className="text-body text-apple-gray-300">
-              More ways to shop:{' '}
+              <Link
+  to="/"
+  className="inline-flex items-center gap-1 text-apple-blue hover:underline"
+>
+  <img
+    src="/apple.svg"
+    alt=""
+    className="w-12 h-12"
+  />
+</Link> More ways to shop:{' '}
               <Link to="/store" className="text-apple-blue hover:underline">
                 Find an Apple Store
               </Link>{' '}

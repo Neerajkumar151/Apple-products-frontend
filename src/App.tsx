@@ -4,7 +4,7 @@ import { SearchProvider } from './context/SearchContext';
 import Navigation from './sections/Navigation';
 import Footer from './sections/Footer';
 import SearchModal from './components/SearchModal';
-
+import ScrollToTop from "./components/ScrollToTop";
 
 // Landing Page Sections
 import Hero from './sections/Hero';
@@ -84,9 +84,12 @@ function LandingPage() {
 
 function App() {
   return (
+    
     <CartProvider>
+      
       <SearchProvider>
         <Router>
+          <ScrollToTop />
           <Navigation />
           <SearchModal />
           <main>
