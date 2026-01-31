@@ -65,7 +65,7 @@ export default function ContactPage() {
               Apple Inc.<br />
               One Apple Park Way<br />
               Cupertino, CA 95014<br />
-              United States
+              India
             </p>
           </div>
         </div>

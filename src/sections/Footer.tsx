@@ -89,28 +89,31 @@ export default function Footer() {
           
 
           {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-            <p className="text-body text-apple-gray-300">
-              <Link
-  to="/"
-  className="inline-flex items-center gap-1 text-apple-blue hover:underline"
->
-  <img
-    src="/apple.svg"
-    alt=""
-    className="w-12 h-12"
-  />
-</Link> More ways to shop:{' '}
-              <Link to="/store" className="text-apple-blue hover:underline">
-                Find an Apple Store
-              </Link>{' '}
-              or{' '}
-              <Link to="/store" className="text-apple-blue hover:underline">
-                other retailer
-              </Link>{' '}
-              near you.
-            </p>
-          </div>
+          <div className="flex items-center gap-2 text-body text-apple-gray-300">
+  <Link
+    to="/"
+    className="inline-flex items-center"
+  >
+    <img
+      src="/apple.svg"
+      alt="Apple"
+      className="w-10 h-10 align-middle"
+    />
+  </Link>
+
+  <span>
+    More ways to shop:{' '}
+    <Link to="/store" className="text-apple-blue hover:underline">
+      Find an Apple Store
+    </Link>{' '}
+    or{' '}
+    <Link to="/store" className="text-apple-blue hover:underline">
+      other retailer
+    </Link>{' '}
+    near you.
+  </span>
+</div>
+
 
           {/* Copyright */}
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
@@ -146,7 +149,7 @@ export default function Footer() {
               to="/footer/country"
               className="flex items-center text-caption text-apple-gray-300 hover:text-apple-gray-500 transition-colors duration-300"
             >
-              United States
+              India
               <ChevronRight className="w-3 h-3 ml-1" />
             </Link>
           </div>
