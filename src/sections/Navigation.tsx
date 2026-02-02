@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { Search, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, User } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSearch } from '../context/SearchContext';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+
 
 const navLinks = [
   { name: 'Store', path: '/store' },
@@ -18,13 +20,16 @@ const navLinks = [
   { name: 'Support', path: '/support' },
 ];
 
+
 export default function Navigation() {
   const navRef = useRef<HTMLElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { openSearch } = useSearch();
   const { totalItems } = useCart();
+  const { user, profile, signOut, getDisplayName } = useAuth();
   const location = useLocation();
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   useEffect(() => {
     const nav = navRef.current;
@@ -117,6 +122,63 @@ export default function Navigation() {
                   </span>
                 )}
               </Link>
+              
+              {/* Auth Button */}
+              {user ? (
+                <div className="relative">
+                  <button
+                    onClick={() => setShowUserMenu(!showUserMenu)}
+                    className={`flex items-center gap-2 transition-colors duration-300 hover:opacity-70 ${
+                      isScrolled ? 'text-white/90' : 'text-apple-gray-500/90'
+                    }`}
+                    aria-label="Account"
+                  >
+                    {profile?.avatar_url ? (
+                      <img 
+                        src={profile.avatar_url} 
+                        alt="Profile" 
+                        className="w-6 h-6 rounded-full object-cover"
+                      />
+                    ) : (
+                      <User className="w-4 h-4" />
+                    )}
+                  </button>
+                  
+                  {/* User Dropdown */}
+                  {showUserMenu && (
+                    <div className="absolute right-0 mt-3 w-56 rounded-2xl bg-white/95 backdrop-blur-xl shadow-apple-lg border border-apple-gray-100/50 py-2 z-50">
+                      <div className="px-4 py-3 border-b border-apple-gray-100/50">
+                        <p className="text-body-sm font-medium text-apple-gray-500 truncate">
+  {getDisplayName()}
+</p>
+
+                        <p className="text-caption text-apple-gray-300 truncate">
+                          {user.email}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          signOut();
+                          setShowUserMenu(false);
+                        }}
+                        className="w-full text-left px-4 py-2.5 text-body-sm text-apple-gray-500 hover:bg-apple-gray-50 transition-colors duration-200"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  to="/login"
+                  className={`hidden sm:block text-xs font-light tracking-wide transition-colors duration-300 hover:opacity-70 ${
+                    isScrolled ? 'text-white/90' : 'text-apple-gray-500/90'
+                  }`}
+                >
+                  Sign In
+                </Link>
+              )}
+              
               <button
                 className={`lg:hidden transition-colors duration-300 ${
                   isScrolled ? 'text-white/90' : 'text-apple-gray-500/90'
@@ -143,7 +205,7 @@ export default function Navigation() {
             : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 pt-20">
+        <div className="flex flex-col items-center justify-center h-full space-y-6 pt-20 pb-10">
           {navLinks.map((link, index) => (
             <Link
               key={link.name}
@@ -161,6 +223,36 @@ export default function Navigation() {
               {link.name}
             </Link>
           ))}
+          
+          {/* Mobile Auth Link */}
+          <div 
+            className="pt-4 border-t border-white/20 w-40 text-center"
+            style={{
+              transitionDelay: isMobileMenuOpen ? `${navLinks.length * 50}ms` : '0ms',
+              opacity: isMobileMenuOpen ? 1 : 0,
+              transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+          >
+            {user ? (
+              <button
+                onClick={() => {
+                  signOut();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="text-xl font-medium text-white/70 hover:text-white transition-colors duration-300"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="text-xl font-medium text-white/70 hover:text-white transition-colors duration-300"
+              >
+                Sign In
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </>

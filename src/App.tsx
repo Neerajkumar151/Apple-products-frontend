@@ -1,10 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
+import { AuthProvider } from './context/AuthContext';
 import Navigation from './sections/Navigation';
 import Footer from './sections/Footer';
 import SearchModal from './components/SearchModal';
 import ScrollToTop from "./components/ScrollToTop";
+import { Toaster } from 'sonner';
 
 // Landing Page Sections
 import Hero from './sections/Hero';
@@ -32,6 +34,10 @@ import ProductDetailPage from './pages/product/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
+
+// Auth Pages
+import LoginPage from './pages/auth/LoginPage';
+import SignupPage from './pages/auth/SignupPage';
 
 // Footer Pages - Shop and Learn
 import AirTagPage from './pages/footer/AirTagPage';
@@ -84,16 +90,22 @@ function LandingPage() {
 
 function App() {
   return (
-    
-    <CartProvider>
-      
-      <SearchProvider>
-        <Router>
-          <ScrollToTop />
+    <AuthProvider>
+      <CartProvider>
+        <SearchProvider>
+          <Router>
+            <ScrollToTop />
           <Navigation />
           <SearchModal />
+          <Toaster
+          position="bottom-right"
+          richColors
+          closeButton
+          expand
+        />
           <main>
             <Routes>
+              
               {/* Landing Page */}
               <Route path="/" element={<LandingPage />} />
 
@@ -116,6 +128,10 @@ function App() {
               <Route path="/cart" element={<CartPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
+
+              {/* Auth Pages */}
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
 
               {/* Footer Pages - Shop and Learn */}
               <Route path="/footer/airtag" element={<AirTagPage />} />
@@ -175,6 +191,7 @@ function App() {
         </Router>
       </SearchProvider>
     </CartProvider>
+  </AuthProvider>
   );
 }
 

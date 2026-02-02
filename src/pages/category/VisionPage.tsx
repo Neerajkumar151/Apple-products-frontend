@@ -1,12 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, ShoppingBag, Eye, Box, Camera, Globe, Hand } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Eye, Box, Camera, Globe, Hand, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { getProductsByCategory, type Product } from '../../data/products';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const ITEMS_PER_PAGE = 3;
 
 const visionFeatures = [
   {
@@ -47,6 +49,137 @@ const visionSpecs = [
   { label: 'Cameras', value: '12 cameras', detail: '5 sensors, 6 microphones' },
   { label: 'Audio', value: 'Spatial Audio', detail: 'Personalized sound' },
 ];
+
+interface ProductSectionProps {
+  title: string;
+  products: Product[];
+  addToCart: (product: Product) => void;
+  badge?: string;
+}
+
+function ProductSection({ title, products: sectionProducts, addToCart, badge }: ProductSectionProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(sectionProducts.length / ITEMS_PER_PAGE);
+  
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const displayedProducts = sectionProducts.slice(startIndex, endIndex);
+
+  if (sectionProducts.length === 0) return null;
+
+  return (
+    <div className="mb-16">
+      <div className="flex items-center gap-3 mb-8">
+        {badge && (
+          <span className="inline-block px-3 py-1 bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-600 text-sm font-medium rounded-full">
+            {badge}
+          </span>
+        )}
+        <h3 className="text-2xl font-semibold text-card-foreground">
+          {title}
+        </h3>
+      </div>
+      
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {displayedProducts.map((product) => {
+          const firstVariant = product.variants[0];
+          
+          return (
+            <div
+              key={product.id}
+              className="product-card group bg-background rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border"
+            >
+              <div className="bg-gradient-to-b from-purple-500/5 to-transparent p-8">
+                <div className="flex items-center justify-center h-48 mb-6">
+                  <img
+                    src={firstVariant?.image || product.heroImage}
+                    alt={product.name}
+                    className="max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              <div className="p-8 pt-0">
+                <div className="mb-6">
+                  {product.isNew && (
+                    <span className="inline-block px-3 py-1 bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-600 text-xs font-medium rounded-full mb-3">
+                      New
+                    </span>
+                  )}
+                  <h3 className="text-2xl font-semibold text-foreground mb-2">
+                    {product.shortName || product.name}
+                  </h3>
+                  <p className="text-base text-muted-foreground mb-3">
+                    {product.tagline}
+                  </p>
+                  <p className="text-xl font-medium text-foreground">
+                    From ${product.basePrice}
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="btn-apple w-full justify-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+                  >
+                    <ShoppingBag className="w-4 h-4 mr-2" />
+                    {product.variants[0]?.availability === 'pre-order' ? 'Pre-order' : 'Buy'}
+                  </button>
+
+                  <Link
+                    to={`/product/${product.id}`}
+                    className="flex items-center justify-center text-primary hover:underline text-base font-medium py-2"
+                  >
+                    Learn more
+                    <ArrowRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-4 mt-8">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="flex items-center gap-1 px-4 py-2 rounded-full bg-card/10 text-card disabled:opacity-50 disabled:cursor-not-allowed hover:bg-card/20 transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            Previous
+          </button>
+          
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`w-8 h-8 rounded-full text-sm font-medium transition-colors ${
+                  currentPage === page
+                    ? 'bg-purple-500 text-white'
+                    : 'bg-card/10 text-card hover:bg-card/20'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+          
+          <button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="flex items-center gap-1 px-4 py-2 rounded-full bg-card/10 text-card disabled:opacity-50 disabled:cursor-not-allowed hover:bg-card/20 transition-colors"
+          >
+            Next
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function VisionPage() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -202,7 +335,7 @@ export default function VisionPage() {
 
           <div className="animate-item flex gap-4 mb-16">
             <Link to="/store" className="btn-apple bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
-              Pre-order now
+              Shop Vision
             </Link>
             <Link to="#features" className="btn-apple-outline border-card/30 text-card hover:bg-card/10">
               Explore features
@@ -331,77 +464,20 @@ export default function VisionPage() {
       </div>
 
       {/* Products Grid */}
-      <div id="buy" className="py-24 px-4 sm:px-6 lg:px-8 bg-card">
+      <div id="buy" ref={gridRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-card">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-semibold text-card-foreground mb-4 text-center">
-            Choose your Vision Pro
+            Choose your Vision
           </h2>
           <p className="text-lg text-muted-foreground text-center mb-16">
-            Select the storage that fits your needs.
+            Select the model that fits your needs.
           </p>
 
-          <div
-            ref={gridRef}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto"
-          >
-            {products.map(product => {
-              const firstVariant = product.variants[0];
-
-              return (
-                <div
-                  key={product.id}
-                  className="product-card group bg-background rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-border"
-                >
-                  <div className="bg-gradient-to-b from-purple-500/5 to-transparent p-8">
-                    <div className="flex items-center justify-center h-48 mb-6">
-                      <img
-                        src={firstVariant?.image || product.heroImage}
-                        alt={product.name}
-                        className="max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="p-8 pt-0">
-                    <div className="mb-6">
-                      {product.isNew && (
-                        <span className="inline-block px-3 py-1 bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-600 text-xs font-medium rounded-full mb-3">
-                          New
-                        </span>
-                      )}
-                      <h3 className="text-2xl font-semibold text-foreground mb-2">
-                        {product.name}
-                      </h3>
-                      <p className="text-base text-muted-foreground mb-3">
-                        {product.tagline}
-                      </p>
-                      <p className="text-xl font-medium text-foreground">
-                        From ${product.basePrice}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-col gap-3">
-                      <button
-                        onClick={() => handleAddToCart(product)}
-                        className="btn-apple w-full justify-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
-                      >
-                        <ShoppingBag className="w-4 h-4 mr-2" />
-                        Pre-order
-                      </button>
-
-                      <Link
-                        to={`/product/${product.id}`}
-                        className="flex items-center justify-center text-primary hover:underline text-base font-medium py-2"
-                      >
-                        Learn more
-                        <ArrowRight className="w-4 h-4 ml-1" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <ProductSection
+            title="Apple Vision"
+            products={products}
+            addToCart={handleAddToCart}
+          />
 
           {products.length === 0 && (
             <div className="text-center py-20">

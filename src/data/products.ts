@@ -1,5 +1,8 @@
 import { iphoneModels } from './iphoneModels';
 import { macbookModels } from './macbookModels';
+import { ipadModels } from './ipadModels';
+import { watchModels } from './watchModels';
+import { visionModels } from './visionModels';
 
 export interface ProductVariant {
   id: string;
@@ -969,8 +972,15 @@ const baseProducts: Product[] = [
   },
 ];
 
-// Combine base products with all iPhone and MacBook models
-export const products: Product[] = [...baseProducts, ...iphoneModels, ...macbookModels];
+// Combine base products with all product models
+export const products: Product[] = [
+  ...baseProducts,
+  ...iphoneModels,
+  ...macbookModels,
+  ...ipadModels,
+  ...watchModels,
+  ...visionModels,
+];
 
 // Helper functions
 export function getProductById(id: string): Product | undefined {

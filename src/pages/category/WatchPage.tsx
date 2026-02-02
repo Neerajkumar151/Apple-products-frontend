@@ -1,12 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, ShoppingBag, Heart, Activity, Droplets, Sun, Battery, MapPin } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Heart, Activity, Droplets, Sun, Battery, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { getProductsByCategory, type Product } from '../../data/products';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const ITEMS_PER_PAGE = 4;
 
 const healthFeatures = [
   {
@@ -35,6 +37,137 @@ const healthFeatures = [
   },
 ];
 
+interface ProductSectionProps {
+  title: string;
+  products: Product[];
+  addToCart: (product: Product) => void;
+  badge?: string;
+}
+
+function ProductSection({ title, products: sectionProducts, addToCart, badge }: ProductSectionProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(sectionProducts.length / ITEMS_PER_PAGE);
+  
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const displayedProducts = sectionProducts.slice(startIndex, endIndex);
+
+  if (sectionProducts.length === 0) return null;
+
+  return (
+    <div className="mb-16">
+      <div className="flex items-center gap-3 mb-8">
+        {badge && (
+          <span className="inline-block px-3 py-1 bg-orange-500/10 text-orange-500 text-sm font-medium rounded-full">
+            {badge}
+          </span>
+        )}
+        <h3 className="text-2xl font-semibold text-foreground">
+          {title}
+        </h3>
+      </div>
+      
+      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
+        {displayedProducts.map((product) => {
+          const firstVariant = product.variants[0];
+          
+          return (
+            <div
+              key={product.id}
+              className="product-card group bg-card rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
+            >
+              <div className="p-8 lg:p-12">
+                <div className="grid lg:grid-cols-2 gap-8 items-center">
+                  <div className="flex items-center justify-center h-48 lg:h-64">
+                    <img
+                      src={firstVariant?.image || product.heroImage}
+                      alt={product.name}
+                      className="max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <div>
+                    {product.isNew && (
+                      <span className="inline-block px-3 py-1 bg-red-500/10 text-red-500 text-xs font-medium rounded-full mb-3">
+                        New
+                      </span>
+                    )}
+                    <h3 className="text-2xl lg:text-3xl font-semibold text-card-foreground mb-2">
+                      {product.shortName || product.name}
+                    </h3>
+                    <p className="text-base text-muted-foreground mb-3">
+                      {product.tagline}
+                    </p>
+                    <p className="text-xl font-medium text-card-foreground mb-6">
+                      From ${product.basePrice}
+                    </p>
+
+                    <div className="flex flex-col gap-3">
+                      <button
+                        onClick={() => addToCart(product)}
+                        className="btn-apple w-full justify-center"
+                      >
+                        <ShoppingBag className="w-4 h-4 mr-2" />
+                        Buy
+                      </button>
+
+                      <Link
+                        to={`/product/${product.id}`}
+                        className="flex items-center justify-center text-primary hover:underline text-base font-medium py-2"
+                      >
+                        Learn more
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-4 mt-8">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="flex items-center gap-1 px-4 py-2 rounded-full bg-secondary text-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:bg-secondary/80 transition-colors"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            Previous
+          </button>
+          
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`w-8 h-8 rounded-full text-sm font-medium transition-colors ${
+                  currentPage === page
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-secondary text-foreground hover:bg-secondary/80'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+          
+          <button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="flex items-center gap-1 px-4 py-2 rounded-full bg-secondary text-foreground disabled:opacity-50 disabled:cursor-not-allowed hover:bg-secondary/80 transition-colors"
+          >
+            Next
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function WatchPage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const healthRef = useRef<HTMLDivElement>(null);
@@ -43,6 +176,11 @@ export default function WatchPage() {
   const { addToCart } = useCart();
 
   const products = getProductsByCategory('Watch');
+  
+  // Group products by line
+  const watchUltra = products.filter(p => p.id.includes('ultra'));
+  const watchSeries = products.filter(p => p.id.includes('series'));
+  const watchSE = products.filter(p => p.id.includes('se'));
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -342,8 +480,8 @@ export default function WatchPage() {
         </div>
       </div>
 
-      {/* Products Grid */}
-      <div id="models" className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+      {/* All Watch Models by Series */}
+      <div id="models" ref={gridRef} className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-semibold text-foreground mb-4 text-center">
             Find your watch
@@ -352,68 +490,24 @@ export default function WatchPage() {
             From everyday fitness to extreme adventures, there's an Apple Watch for you.
           </p>
 
-          <div
-            ref={gridRef}
-            className="grid md:grid-cols-2 gap-8"
-          >
-            {products.map(product => {
-              const firstVariant = product.variants[0];
+          <ProductSection
+            title="Apple Watch Ultra"
+            products={watchUltra}
+            addToCart={handleAddToCart}
+            badge="Adventure"
+          />
 
-              return (
-                <div
-                  key={product.id}
-                  className="product-card group bg-card rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
-                >
-                  <div className="p-8 lg:p-12">
-                    <div className="grid lg:grid-cols-2 gap-8 items-center">
-                      <div className="flex items-center justify-center h-48 lg:h-64">
-                        <img
-                          src={firstVariant?.image || product.heroImage}
-                          alt={product.name}
-                          className="max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
+          <ProductSection
+            title="Apple Watch Series"
+            products={watchSeries}
+            addToCart={handleAddToCart}
+          />
 
-                      <div>
-                        {product.isNew && (
-                          <span className="inline-block px-3 py-1 bg-red-500/10 text-red-500 text-xs font-medium rounded-full mb-3">
-                            New
-                          </span>
-                        )}
-                        <h3 className="text-2xl lg:text-3xl font-semibold text-card-foreground mb-2">
-                          {product.name}
-                        </h3>
-                        <p className="text-base text-muted-foreground mb-3">
-                          {product.tagline}
-                        </p>
-                        <p className="text-xl font-medium text-card-foreground mb-6">
-                          From ${product.basePrice}
-                        </p>
-
-                        <div className="flex flex-col gap-3">
-                          <button
-                            onClick={() => handleAddToCart(product)}
-                            className="btn-apple w-full justify-center"
-                          >
-                            <ShoppingBag className="w-4 h-4 mr-2" />
-                            Buy
-                          </button>
-
-                          <Link
-                            to={`/product/${product.id}`}
-                            className="flex items-center justify-center text-primary hover:underline text-base font-medium py-2"
-                          >
-                            Learn more
-                            <ArrowRight className="w-4 h-4 ml-1" />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <ProductSection
+            title="Apple Watch SE"
+            products={watchSE}
+            addToCart={handleAddToCart}
+          />
 
           {products.length === 0 && (
             <div className="text-center py-20">
