@@ -3,23 +3,23 @@ import type { Product } from './products';
 // iPad model images mapping
 const ipadImages = {
   // iPad (standard)
-  'ipad-10': '/ipad10.jpg',
-  'ipad-11': '/ipad11.jpg',
+  'ipad-10': '/ipad10.webp',
+  'ipad-11': '/ipad11.webp',
   // iPad mini
-  'ipad-mini-6': '/ipadmini6.jpg',
-  'ipad-mini-7': '/ipadmini7.jpg',
+  'ipad-mini-6': '/ipadmini6.webp',
+  'ipad-mini-7': '/ipadmini7.webp',
   // iPad Air
-  'ipad-air-109-m1': '/ipadair109m1.jpg',
-  'ipad-air-11-m2': '/ipadair11m2.jpg',
-  'ipad-air-13-m2': '/ipadair13m2.jpg',
+  'ipad-air-109-m1': '/ipadair109m1.webp',
+  'ipad-air-11-m2': '/ipadair11m2.webp',
+  'ipad-air-13-m2': '/ipadair13m2.webp',
   // iPad Pro 11"
-  'ipad-pro-11-m1': '/ipadpro11m1.jpg',
-  'ipad-pro-11-m2': '/ipadpro11m2.jpg',
-  'ipad-pro-11-m4': '/ipadpro11m4.jpg',
+  'ipad-pro-11-m1': '/ipadpro11m1.webp',
+  'ipad-pro-11-m2': '/ipadpro11m2.webp',
+  'ipad-pro-11-m4': '/ipadpro11m4.webp',
   // iPad Pro 12.9"/13"
-  'ipad-pro-129-m1': '/ipadpro129m1.jpg',
-  'ipad-pro-129-m2': '/ipadpro129m2.jpg',
-  'ipad-pro-13-m4': '/ipadpro13m4.jpg',
+  'ipad-pro-129-m1': '/ipadpro129m1.webp',
+  'ipad-pro-129-m2': '/ipadpro129m2.webp',
+  'ipad-pro-13-m4': '/ipadpro13m4.webp',
 };
 
 export const ipadModels: Product[] = [

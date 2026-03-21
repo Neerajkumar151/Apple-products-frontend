@@ -11,7 +11,7 @@ const products = [
     name: 'Apple TV 4K',
     tagline: 'The Apple experience. Cinematic in every sense.',
     price: 129,
-    image: 'https://www.apple.com/v/tv-home/k/images/overview/apple_tv_4k__b89u7p5sqpqq_large.jpg',
+    image: '/apple-tv-4k.webp',
     description: 'Apple TV 4K brings the best of TV together with your favorite Apple devices and services.',
     icon: Tv,
   },
@@ -19,7 +19,7 @@ const products = [
     name: 'HomePod',
     tagline: 'Profound sound.',
     price: 299,
-    image: 'https://www.apple.com/v/tv-home/k/images/overview/homepod__eam7sb8cr1m6_large.jpg',
+    image: '/homepod.webp',
     description: 'HomePod is a powerhouse of a speaker. Apple-engineered audio technology and advanced software.',
     icon: Music,
   },
@@ -27,7 +27,7 @@ const products = [
     name: 'HomePod mini',
     tagline: 'Room-filling sound.',
     price: 99,
-    image: 'https://www.apple.com/v/tv-home/k/images/overview/homepod_mini__f799t9au6u6e_large.jpg',
+    image: '/homepod-mini.webp',
     description: 'HomePod mini delivers surprisingly big sound for such a small speaker.',
     icon: Home,
   },
@@ -116,7 +116,7 @@ export default function TVHomePage() {
         {/* Visual Hero Element */}
         <div className="animate-item mt-16 relative rounded-[40px] overflow-hidden aspect-[21/9] bg-black shadow-2xl">
           <img 
-            src="https://www.apple.com/v/tv-home/k/images/overview/hero__eb66v8v869ae_large.jpg" 
+            src="/tv-home-hero.webp" 
             alt="Apple TV and HomePod"
             className="w-full h-full object-cover opacity-90"
           />
@@ -198,7 +198,7 @@ export default function TVHomePage() {
             
             <div className="lg:w-1/2 relative">
               <img 
-                src="https://www.apple.com/v/tv-home/k/images/overview/home_app__fd9unf12p96u_large.jpg" 
+                src="/home-app.webp" 
                 alt="Home App on iPhone"
                 className="rounded-[40px] shadow-2xl"
               />

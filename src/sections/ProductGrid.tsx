@@ -13,7 +13,7 @@ const products = [
     name: 'iPhone 15 Pro',
     tagline: 'Titanium. So strong. So light. So Pro.',
     price: 'From $999',
-    image: '/iphone-card.png',
+    image: '/iphone-card.webp',
     color: 'bg-gradient-to-b from-apple-gray-100 to-white',
   },
   {
@@ -22,7 +22,7 @@ const products = [
     name: 'MacBook Air',
     tagline: 'Lean. Mean. M3 machine.',
     price: 'From $1099',
-    image: '/macbook-card.png',
+    image: '/macbook-card.webp',
     color: 'bg-gradient-to-b from-apple-gray-100 to-white',
   },
   {
@@ -31,7 +31,7 @@ const products = [
     name: 'iPad Pro',
     tagline: 'Supercharged by M2.',
     price: 'From $799',
-    image: '/ipad-card.png',
+    image: '/ipad-card.webp',
     color: 'bg-gradient-to-b from-apple-gray-100 to-white',
   },
   {
@@ -40,7 +40,7 @@ const products = [
     name: 'Apple Watch Ultra',
     tagline: 'Next-level adventure.',
     price: 'From $799',
-    image: '/watch-card.png',
+    image: '/watch-card.webp',
     color: 'bg-gradient-to-b from-apple-gray-100 to-white',
   },
   {
@@ -49,7 +49,7 @@ const products = [
     name: 'AirPods Pro',
     tagline: 'Adaptive Audio. Now playing.',
     price: 'From $249',
-    image: '/airpods-card.png',
+    image: '/airpods-card.webp',
     color: 'bg-gradient-to-b from-apple-gray-100 to-white',
   },
   {
@@ -58,7 +58,7 @@ const products = [
     name: 'Apple Vision Pro',
     tagline: 'Spatial computing. Here.',
     price: 'From $3499',
-    image: '/vision-card.png',
+    image: '/vision-card.webp',
     color: 'bg-gradient-to-b from-apple-gray-100 to-white',
   },
 ];

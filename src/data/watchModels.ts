@@ -2,13 +2,13 @@ import type { Product } from './products';
 
 // Apple Watch model images mapping
 const watchImages = {
-  'watch-se-1': '/watchse1.jpg',
-  'watch-se-2': '/watchse2.jpg',
-  'watch-series-8': '/watchseries8.jpg',
-  'watch-series-9': '/watchseries9.jpg',
-  'watch-series-10': '/watchseries10.jpg',
-  'watch-ultra-1': '/watchultra1.jpg',
-  'watch-ultra-2': '/watchultra2.jpg',
+  'watch-se-1': '/watchse1.webp',
+  'watch-se-2': '/watchse2.webp',
+  'watch-series-8': '/watchseries8.webp',
+  'watch-series-9': '/watchseries9.webp',
+  'watch-series-10': '/watchseries10.webp',
+  'watch-ultra-1': '/watchultra1.webp',
+  'watch-ultra-2': '/watchultra2.webp',
 };
 
 export const watchModels: Product[] = [

@@ -50,24 +50,24 @@ export interface Product {
 // Product Images
 const productImages = {
   iphone: {
-    hero: '/iphone-hero.jpg',
-    card: '/iphone-card.png',
-    back: '/iphone-back.png',
+    hero: '/iphone-hero.webp',
+    card: '/iphone-card.webp',
+    back: '/iphone-back.webp',
   },
   macbook: {
-    card: '/macbook-card.png',
+    card: '/macbook-card.webp',
   },
   ipad: {
-    card: '/ipad-card.png',
+    card: '/ipad-card.webp',
   },
   watch: {
-    card: '/watch-card.png',
+    card: '/watch-card.webp',
   },
   airpods: {
-    card: '/airpods-card.png',
+    card: '/airpods-card.webp',
   },
   vision: {
-    card: '/vision-card.png',
+    card: '/vision-card.webp',
   },
 };
 

@@ -206,7 +206,7 @@ export default function iPhonePage() {
           {/* Hero iPhone Image */}
           <div className="animate-item hero-phone relative w-full max-w-md mx-auto">
             <img
-              src="/iphone-card.png"
+              src="/iphone-card.webp"
               alt="iPhone 15 Pro"
               className="w-full h-auto object-contain drop-shadow-2xl"
             />
@@ -284,7 +284,7 @@ export default function iPhonePage() {
 
             <div className="relative">
               <img
-                src="/iphone-back.png"
+                src="/iphone-back.webp"
                 alt="iPhone Camera"
                 className="w-full h-auto rounded-2xl"
               />

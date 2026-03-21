@@ -2,8 +2,8 @@ import type { Product } from './products';
 
 // Vision model images mapping
 const visionImages = {
-  'vision-pro': '/visionpro.jpg',
-  'vision-2': '/vision2.jpg',
+  'vision-pro': '/visionpro.webp',
+  'vision-2': '/vision2.webp',
 };
 
 export const visionModels: Product[] = [

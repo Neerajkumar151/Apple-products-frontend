@@ -124,7 +124,7 @@ export default function ColorLab() {
             style={{ transformStyle: 'preserve-3d' }}
           >
             <img
-              src="/iphone-back.png"
+              src="/iphone-back.webp"
               alt={`iPhone in ${selectedColor.name}`}
               className="w-full h-full object-contain transition-all duration-500"
               style={{

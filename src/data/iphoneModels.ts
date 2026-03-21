@@ -3,29 +3,29 @@ import type { Product } from './products';
 // iPhone model images mapping
 const iphoneImages = {
   // iPhone 13 Series
-  'iphone-13': '/iphone13.jpg',
-  'iphone-13-mini': '/iphone13mini.png',
-  'iphone-13-pro': '/iphone13pro.png',
-  'iphone-13-pro-max': '/iphone13promax.jpg',
+  'iphone-13': '/iphone13.webp',
+  'iphone-13-mini': '/iphone13mini.webp',
+  'iphone-13-pro': '/iphone13pro.webp',
+  'iphone-13-pro-max': '/iphone13promax.webp',
   // iPhone 14 Series
-  'iphone-14': '/iphone14.jpg',
-  'iphone-14-plus': '/iphone14plus.jpg',
-  'iphone-14-pro': '/iphone14pro.jpg',
-  'iphone-14-pro-max': '/iphone14promax.jpg',
+  'iphone-14': '/iphone14.webp',
+  'iphone-14-plus': '/iphone14plus.webp',
+  'iphone-14-pro': '/iphone14pro.webp',
+  'iphone-14-pro-max': '/iphone14promax.webp',
   // iPhone 15 Series
-  'iphone-15': '/iphone15.jpg',
-  'iphone-15-plus': '/iphone15plus.jpg',
-  'iphone-15-pro': '/iphone15pro.jpg',
-  'iphone-15-pro-max': '/iphone15promax.jpg',
+  'iphone-15': '/iphone15.webp',
+  'iphone-15-plus': '/iphone15plus.webp',
+  'iphone-15-pro': '/iphone15pro.webp',
+  'iphone-15-pro-max': '/iphone15promax.webp',
   // iPhone 16 Series
-  'iphone-16': '/iphone16.jpg',
-  'iphone-16-plus': '/iphone16plus.jpg',
-  'iphone-16-pro': '/iphone16pro.jpg',
-  'iphone-16-pro-max': '/iphone16promax.jpg',
+  'iphone-16': '/iphone16.webp',
+  'iphone-16-plus': '/iphone16plus.webp',
+  'iphone-16-pro': '/iphone16pro.webp',
+  'iphone-16-pro-max': '/iphone16promax.webp',
   // iPhone 17 Series
-  'iphone-17': '/iphone17.jpg',
-  'iphone-17-pro': '/iphone17pro.jpg',
-  'iphone-17-pro-max': '/iphone17promax.jpg',
+  'iphone-17': '/iphone17.webp',
+  'iphone-17-pro': '/iphone17pro.webp',
+  'iphone-17-pro-max': '/iphone17promax.webp',
 };
 
 export const iphoneModels: Product[] = [

@@ -188,7 +188,7 @@ export default function MacPage() {
           {/* Hero Image */}
           <div className="mt-16 w-full max-w-4xl">
             <img
-              src="/macbook-card.png"
+              src="/macbook-card.webp"
               alt="MacBook"
               className="w-full h-auto object-contain drop-shadow-2xl"
             />
@@ -281,7 +281,7 @@ export default function MacPage() {
 
             <div className="relative">
               <img
-                src="/macbook-card.png"
+                src="/macbook-card.webp"
                 alt="MacBook Pro"
                 className="w-full h-auto rounded-2xl"
               />

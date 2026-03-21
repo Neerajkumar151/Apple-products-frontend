@@ -331,7 +331,7 @@ export default function WatchPage() {
           {/* Watch Hero Image */}
           <div className="animate-item watch-hero relative perspective-1000">
             <img
-              src="/watch-card.png"
+              src="/watch-card.webp"
               alt="Apple Watch"
               className="w-full max-w-sm h-auto object-contain drop-shadow-2xl"
             />
@@ -470,7 +470,7 @@ export default function WatchPage() {
 
             <div className="relative">
               <img
-                src="/watch-card.png"
+                src="/watch-card.webp"
                 alt="Apple Watch Ultra 2"
                 className="w-full max-w-md mx-auto h-auto drop-shadow-2xl"
               />

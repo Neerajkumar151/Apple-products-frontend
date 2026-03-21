@@ -206,7 +206,7 @@ export default function AirPodsPage() {
           {/* AirPods Hero Image with Sound Waves */}
           <div className="animate-item relative">
             <img
-              src="/airpods-card.png"
+              src="/airpods-card.webp"
               alt="AirPods Pro"
               className="airpods-hero w-full max-w-md h-auto object-contain drop-shadow-xl"
             />
@@ -262,7 +262,7 @@ export default function AirPodsPage() {
             <div className="relative">
               <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
                 <img
-                  src="/airpods-card.png"
+                  src="/airpods-card.webp"
                   alt="AirPods Pro with H2 chip"
                   className="w-3/4 h-auto"
                 />
@@ -344,7 +344,7 @@ export default function AirPodsPage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div className="comparison-card bg-background rounded-3xl p-8 text-center hover:shadow-lg transition-shadow">
               <img
-                src="/airpods-card.png"
+                src="/airpods-card.webp"
                 alt="AirPods Pro"
                 className="w-32 h-32 object-contain mx-auto mb-6"
               />
@@ -375,7 +375,7 @@ export default function AirPodsPage() {
 
             <div className="comparison-card bg-background rounded-3xl p-8 text-center hover:shadow-lg transition-shadow">
               <img
-                src="/airpods-card.png"
+                src="/airpods-card.webp"
                 alt="AirPods Max"
                 className="w-32 h-32 object-contain mx-auto mb-6"
               />

@@ -3,28 +3,28 @@ import type { Product } from './products';
 // MacBook model images mapping
 const macbookImages = {
   // MacBook Air 13" Series
-  'macbook-air-13-m1': '/air13m1.jpg',
-  'macbook-air-13-m2': '/air13m2.jpg',
-  'macbook-air-13-m3': '/air13m3.jpg',
-  'macbook-air-13-m4': '/air13m4.jpg',
+  'macbook-air-13-m1': '/air13m1.webp',
+  'macbook-air-13-m2': '/air13m2.webp',
+  'macbook-air-13-m3': '/air13m3.webp',
+  'macbook-air-13-m4': '/air13m4.webp',
   // MacBook Air 15" Series
-  'macbook-air-15-m2': '/air15m2.jpg',
-  'macbook-air-15-m4': '/air15m4.jpg',
-  'macbook-air-15-m5': '/air15m5.jpg',
+  'macbook-air-15-m2': '/air15m2.webp',
+  'macbook-air-15-m4': '/air15m4.webp',
+  'macbook-air-15-m5': '/air15m5.webp',
   // MacBook Pro 13" Series
-  'macbook-pro-13-m1': '/macbookpro13m1.jpg',
+  'macbook-pro-13-m1': '/macbookpro13m1.webp',
   // MacBook Pro 14" Series
-  'macbook-pro-14-m1': '/macbookpro14m1.jpg',
-  'macbook-pro-14-m2': '/macbookpro14m2.jpg',
-  'macbook-pro-14-m3': '/macbookpro14m3.jpg',
-  'macbook-pro-14-m4': '/macbookpro14m4.jpg',
-  'macbook-pro-14-m5': '/macbookpro14m5.jpg',
+  'macbook-pro-14-m1': '/macbookpro14m1.webp',
+  'macbook-pro-14-m2': '/macbookpro14m2.webp',
+  'macbook-pro-14-m3': '/macbookpro14m3.webp',
+  'macbook-pro-14-m4': '/macbookpro14m4.webp',
+  'macbook-pro-14-m5': '/macbookpro14m5.webp',
   // MacBook Pro 16" Series
-  'macbook-pro-16-m1': '/macbookpro16m1.jpg',
-  'macbook-pro-16-m2': '/macbookpro16m2.jpg',
-  'macbook-pro-16-m3': '/macbookpro16m3.jpg',
-  'macbook-pro-16-m4': '/macbookpro16m4.jpg',
-  'macbook-pro-16-m5': '/macbookpro16m5.jpg',
+  'macbook-pro-16-m1': '/macbookpro16m1.webp',
+  'macbook-pro-16-m2': '/macbookpro16m2.webp',
+  'macbook-pro-16-m3': '/macbookpro16m3.webp',
+  'macbook-pro-16-m4': '/macbookpro16m4.webp',
+  'macbook-pro-16-m5': '/macbookpro16m5.webp',
 };
 
 export const macbookModels: Product[] = [

@@ -115,7 +115,7 @@ export default function ProductShowcase() {
           >
             <div className="relative aspect-square preserve-3d">
               <img
-                src="/iphone-card.png"
+                src="/iphone-card.webp"
                 alt="iPhone 15 Pro"
                 className="w-full h-full object-contain drop-shadow-2xl"
               />

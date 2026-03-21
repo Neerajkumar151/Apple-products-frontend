@@ -310,7 +310,7 @@ export default function iPadPage() {
 
           <div className="animate-item relative">
             <img
-              src="/ipad-card.png"
+              src="/ipad-card.webp"
               alt="iPad"
               className="w-full h-auto object-contain max-w-lg mx-auto lg:max-w-none drop-shadow-xl"
             />
@@ -367,7 +367,7 @@ export default function iPadPage() {
 
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-foreground to-foreground/80 p-8 lg:p-16">
             <img
-              src="/ipad-card.png"
+              src="/ipad-card.webp"
               alt="iPad Display"
               className="w-full max-w-3xl mx-auto h-auto"
             />

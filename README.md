@@ -3,8 +3,8 @@
 > A pixel-perfect, high-fidelity reimagining of the Apple digital experience. 
 > Built with modern web technologies to demonstrate precision engineering, complex state management, and cinematic user interfaces.
 
-![Project Banner](public/preview.png)
-*(Note: Place a high-quality screenshot of the Hero section in `public/preview.png`)*
+![Project Banner](public/preview.webp)
+*(Note: Place a high-quality screenshot of the Hero section in `public/preview.webp`)*
 
 ## � Introduction
 

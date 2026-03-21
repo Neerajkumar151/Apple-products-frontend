@@ -345,7 +345,7 @@ export default function VisionPage() {
           {/* Vision Pro Hero Image */}
           <div className="animate-item relative w-full max-w-3xl mx-auto">
             <img
-              src="/vision-card.png"
+              src="/vision-card.webp"
               alt="Apple Vision Pro"
               className="w-full h-auto object-contain drop-shadow-2xl"
             />
@@ -398,7 +398,7 @@ export default function VisionPage() {
 
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-purple-900/30 to-foreground p-8 lg:p-16">
             <img
-              src="/vision-card.png"
+              src="/vision-card.webp"
               alt="Vision Pro Display"
               className="w-full max-w-4xl mx-auto h-auto"
             />

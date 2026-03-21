@@ -179,7 +179,7 @@ export default function Hero() {
       >
         <div className="relative aspect-video rounded-apple-lg overflow-hidden shadow-apple-lg">
           <img
-            src="/iphone-hero.jpg"
+            src="/iphone-hero.webp"
             alt="iPhone 15 Pro"
             className="w-full h-full object-cover"
           />
