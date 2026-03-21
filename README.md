@@ -4,7 +4,6 @@
 > Built with modern web technologies to demonstrate precision engineering, complex state management, and cinematic user interfaces.
 
 ![Project Banner](public/preview.PNG)
-*(Note: Place a high-quality screenshot of the Hero section in `public/preview.PNG`)*
 
 ##  Introduction
 
