@@ -3,10 +3,10 @@
 > A pixel-perfect, high-fidelity reimagining of the Apple digital experience. 
 > Built with modern web technologies to demonstrate precision engineering, complex state management, and cinematic user interfaces.
 
-![Project Banner](public/preview.webp)
-*(Note: Place a high-quality screenshot of the Hero section in `public/preview.webp`)*
+![Project Banner](public/preview.PNG)
+*(Note: Place a high-quality screenshot of the Hero section in `public/preview.PNG`)*
 
-## � Introduction
+##  Introduction
 
 This project is a detailed reconstruction of the Apple ecosystem's web interface. It goes beyond a simple visual copy by implementing core functional logic found in enterprise e-commerce platforms. From a global shopping cart system to complex routing and timeline-based animations, this application showcases the power of **React 19** and the **Vite** ecosystem.
 
